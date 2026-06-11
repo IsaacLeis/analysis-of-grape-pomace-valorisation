@@ -1,0 +1,299 @@
+{
+    "unit_operations": {
+        "GR101": {
+            "Specific_Energy": 0.012,
+            "Flow": 48.9
+        },
+        "R201": {
+            "Time": 2,
+            "Loading": 0.5,
+            "CIP": 0.5,
+            "T": 310.15,
+            "E_S_Ratio": 0.05,
+            "Water_Ratio": 10.0,
+            "NaOH_Ratio": 0.0003,
+            "RPM": 150
+        },
+        "CE202": {
+            "Moisture": 0.315,
+            "Split_Grape_Pomace": 1.0,
+            "Solids": [
+                "Grape_Pomace"
+            ],
+            "Specific_Energy": 0.0055
+        },
+        "MF301": {
+            "Type": 0,
+            "Solids": [
+                "Peptides","Protamex"
+            ],
+            "Solids_Retained": [
+                "Protamex"
+            ],
+            "Specific_Energy": 0.0055
+        },
+        "E302": {
+            "Antoine": {"A": 8.07131,"B": 1730.63, "C": 233.426},
+            "V": 0.95,
+            "V_Def": "Overall",
+            "Chemical": "Water",
+            "Effects": 2
+        },
+        "D303": {
+            "Moisture": 0.025,
+            "Split_NaOH": 0.0,
+            "Split_Peptides": 0.0,
+            "RH": 0.50
+        },
+        "RVF401": {
+            "Water_Ratio": 1.5,
+            "Moisture": 0.29,
+            "Specific_Energy": 0.0055,
+            "Split": {
+                "Peptides": 0.0,
+                "Grape_Pomace": 1.0,
+                "Protamex": 0.0,
+                "NaOH": 0.0
+            },
+            "Solids": [
+                "Grape_Pomace",
+                "Protamex",
+                "Peptides"
+            ]
+        },
+        "TK402": {
+            "Tau": 1
+        },
+        "R403": {
+            "Yield": 0.12,
+            "Tau": 1.67,
+            "T": 333.15,
+            "P": 101325,
+            "kW_m3": 1.75,
+            "Solvent_Ratio": 20,
+            "Choline": 0.3978,
+            "Lactate": 0.5132,
+            "Water": 0.0890,
+            "Agitation": 900,
+            "Vlab": 0.00001
+        },
+        "CE404": {
+            "Moisture": 0.315,
+            "Split": {
+                "Grape_Pomace": 1
+            },
+            "Solids": ["Grape_Pomace", "Protamex", "Peptides"],
+            "Moisture_ID": ["Choline_Lactate","Water"],
+            "Solute_ID": ["Phenolics_Extract", "NaOH", "Protamex", "Peptides", "NaOH"],
+            "Specific_Energy": 0.0055
+        },
+        "TK501": {
+            "Tau": 1
+        },
+        "R502": {
+            "PrecipitationPhenolics": 0.99,
+            "HRT": 0.083,
+            "T": 273.15,
+            "P": 101325,
+            "Antisolvent_Ratio": 26.51,
+            "EtOH": 0.27,
+            "AcetEt": 0.73
+        },
+        "RVF503": {
+            "Split": {
+                "Phenolics_Precipitate": 1.0,
+                "Ethanol": 0.0,
+                "Ethyl_Acetate": 0.0
+            },
+            "Moisture_ID": ["Ethanol","Water","Ethyl_Acetate","Choline_Lactate"],
+            "Moisture": 0.285,
+            "Solute_ID": ["Phenolics_Extract", "Protamex", "Peptides", "NaOH"],
+            "Solids": ["Phenolics_Precipitate"],
+            "Specific_Energy": 0.0055
+        },
+        "RVF504": {
+            "Moisture": 0.285,
+            "Washing_Ratio": 115,
+            "Split": {
+                "Choline_Lactate": 0.0,
+                "Water": 0.0,
+                "Phenolics_Extract": 0.0,
+                "Phenolics_Precipitate": 1.0,
+                "Ethanol": 0.0,
+                "Ethyl_Acetate": 0.0,
+                "Protamex": 0.0,
+                "Peptides": 0.0,
+                "NaOH": 0.0
+            },
+            "Moisture_ID": ["Ethanol","Ethyl_Acetate"],
+            "Solute_ID": ["Phenolics_Extract", "Protamex", "Peptides", "NaOH"],
+            "Solids": ["Phenolics_Precipitate"],
+            "Specific_Energy": 0.0055
+        },
+        "D505": {
+            "Moisture": 0.025,
+            "RH": 0.5,
+            "T": 333.15,
+            "Split": {
+                "Ethanol": 1.0
+            }
+        },
+        "MX601": {
+
+        },
+        "P602": {
+            "Pout": 303975
+        },
+        "F603": {
+            "T": 383.15,
+            "P": 303975
+        },
+        "MX604": {
+
+        },
+        "C604": {
+            "Adsorbed_Fraction": 1.0,
+            "Adsorbate": "Water",
+            "Adsorbent": "Zeolite 3A",
+            "Ads_Time": 8.53,
+            "P_Ads": 101325,
+            "T_Ads": 383.15,
+            "Isotherm_Args": [
+                1.512,
+                0.162,
+                4.766,
+                0.838,
+                8.59
+            ],
+            "Isotherm_Model": "Langmuir-Langmuir",
+            "Regen_Time": 3.98,
+            "P_Regen": 101325,
+            "T_Regen": 523.15,
+            "Regen_Isotherm_Args": [
+                0.669,
+                0.162,
+                0.834,
+                0.838,
+                2.153
+            ],
+            "Regen_Isotherm_Model": "Langmuir-Langmuir"
+        },
+        "VLV605": {
+            "P": 101325
+        },
+        "E606": {
+            "T": 273.15
+        },
+        "S-607": {
+            "Antisolvent_Washing_Ratio": 0.02
+        }
+    },
+    "techno_economic": {
+        "CEPCI": 800,
+        "Operating_Hours": 7920,
+        "IRR": 0.12,
+        "Supplies": 0.1,
+        "Duration": {
+            "Start": 2027,
+            "End": 2037
+        },
+        "Depreciation": "SL10",
+        "Startup_Months": 3,
+        "Startup_Sales": 0.33,
+        "Inflation": 0.04,
+        "Finance_Frac": 0.40,
+        "Finance_Interest": 0.0038,
+        "Finance_Years": 6,
+        "Wage": 35000
+    },
+    "stream_prices": {
+        "NaOH": {
+            "value": 0.21,
+            "ub": 0.516,
+            "lb": 0.13
+        },
+        "Soybean_Hydrolysed_Protein": [
+            4.5,
+            7.0,
+            8.0,
+            6.0,
+            4.3
+        ],
+        "Peptides_Extract": [
+            15.69,
+            17.43,
+            6.97,
+            10.46,
+            11.33,
+            34.85,
+            4.62,
+            6.97,
+            26.14,
+            43.57
+        ],
+        "Trypsin": [
+            52.00,
+            25.00,
+            46.00,
+            39.00,
+            50.00
+        ],
+        "Protamex": [
+            12.98,
+            8.66,
+            6.75,
+            21.46,
+            17.31
+        ],
+        "Choline_Chloride": [
+            6.00,
+            15.00,
+            15.79,
+            10.00,
+            6.20
+        ],
+        "Lactic_Acid": [
+            1.20,
+            1.10,
+            1.13,
+            2.10,
+            2.00
+        ],
+        "Phenolics_Extract": 74.89,
+        "Quercitin": [
+            55.00,
+            65.00,
+            58.00,
+            90.00,
+            44.00
+        ],
+        "Naringenin": [
+            45.00,
+            20.00,
+            40.00,
+            140.00,
+            120.00
+        ],
+        "Ethanol": {
+            "value": 0.56,
+            "ub": 0.99,
+            "lb": 0.43
+        },
+        "Ethyl_Acetate": {
+            "value": 1.16,
+            "lb": 0.82,
+            "ub": 1.63
+        },
+        "Water": {
+            "value": 0.003,
+            "ub": 0.0015,
+            "lb": 0.0045
+        },
+        "Natural_Gas": {
+            "value": 0.1489,
+            "ub": 0.4453,
+            "lb": 0.0953
+        },
+        "Electricity": 0.0638
+    }
+}
