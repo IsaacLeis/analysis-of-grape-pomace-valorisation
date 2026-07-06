@@ -3,12 +3,12 @@ import biobuilders as biob
 from process_chemicals import process_chemicals
 
 # Load parameters
-parameters = biob.parse_case_spec("./grape_value_chain/data/grape_pomace.json")
+parameters = biob.parse_case_spec("./data/grape_pomace.json")
 units_params = parameters["unit_operations"]
 tea_params = parameters["techno_economic"]
 prices = parameters["stream_prices"]
 
-def create_system(ID="Grape pomace valorisation"):
+def create_process_tea(ID="Grape pomace valorisation"):
     # Initialise thermo
     biob.ChemicalsManager(process_chemicals).set_thermodynamics()
 
@@ -102,13 +102,14 @@ def create_system(ID="Grape pomace valorisation"):
         ID = 'MF-301',
         ins = (CE202-1,),
         outs = ("9","10"),
-        type = units_params["MF301"]["Type"],
-        solids = units_params["MF301"]["Solids"],
-        solids_retained = units_params["MF301"]["Solids_Retained"],
-        solvent_IDs = ["Water"],
-        solute_IDs = ["NaOH"]
+        LMH = units_params["MF301"]["LMH"],
+        pressure_drop = units_params["MF301"]["Pressure_Drop"],
+        TMP = units_params["MF301"]["TMP"],
+        VCF = units_params["MF301"]["VCF"],
+        module_area = units_params["MF301"]["Module_Area"],
+        split = units_params["MF301"]["Split"],
+        solids_IDs = units_params["MF301"]["Solids_IDs"]
     )
-    MF301.kWh_per_kg = units_params["MF301"]["Specific_Energy"]
     E302 = biob.MultiEffectEvaporator(
         ID = 'E-302',
         ins = (MF301-0,),
@@ -382,7 +383,7 @@ def create_system(ID="Grape pomace valorisation"):
         regen_fluid.imass["O2"] = regen_gas * 0.21
 
     # Global system
-    grape_pomace_valorisation = bst.System(
+    system = bst.System(
         ID,
         path=(
             GR101, R201, CE202, MF301, E302, D303,
@@ -392,9 +393,7 @@ def create_system(ID="Grape pomace valorisation"):
         recycle=[recycled_nades, antisolvent_recycled]
     )
 
-    return grape_pomace_valorisation
-
-def build_TEA(system: bst.System):
+    # Process settings
     process_settings = biob.ProcessSettingsManager(
         CEPCI = tea_params["CEPCI"],
         electricity_price = prices["Electricity"],
@@ -424,7 +423,7 @@ def build_TEA(system: bst.System):
     )
     process_settings.load_settings()
 
-    labor, labor_equip = biob.calculate_labor_requirements(
+    labor = biob.calculate_labor_requirements(
         {
             "Centrifugal separators": 2,
             "Rotatory & belt filter": 2,
@@ -435,7 +434,8 @@ def build_TEA(system: bst.System):
             "Batch reactor": 2,
             "Rotatory dryer": 2,
         }
-    )
+    )[0]
+
     labor_cost = labor * tea_params["Wage"]
 
     techno_economic = biob.TEA(

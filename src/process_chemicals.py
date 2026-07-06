@@ -61,3 +61,10 @@ protamex = bst.Chemical(
     default = True,
     search_db = False,
 )
+
+process_chemicals = [
+    pomace, protamex, deproteinised_pomace, nades, 
+    phenolics_extract, phenolics_precipitate, "H2O",
+    "Ethyl_Acetate", "Ethanol", "N2", "O2", "CO2", "CH4",
+    "NaOH", "Peptides",
+]

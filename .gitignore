@@ -1,1 +1,4 @@
 .venv
+
+# Python cache
+*.pyc

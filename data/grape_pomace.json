@@ -23,14 +23,17 @@
             "Specific_Energy": 0.0055
         },
         "MF301": {
-            "Type": 0,
-            "Solids": [
+            "LMH": 361.8,
+            "Pressure_Drop": 68947.57,
+            "TMP": 350000,
+            "VCF": 5.0,
+            "Module_Area": 35.0,
+            "Split": {
+                "Protamex": 0.0
+            },
+            "Solids_IDs": [
                 "Peptides","Protamex"
-            ],
-            "Solids_Retained": [
-                "Protamex"
-            ],
-            "Specific_Energy": 0.0055
+            ]
         },
         "E302": {
             "Antoine": {"A": 8.07131,"B": 1730.63, "C": 233.426},
