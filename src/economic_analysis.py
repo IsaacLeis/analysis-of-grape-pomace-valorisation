@@ -2,7 +2,7 @@ import biosteam as bst
 import biobuilders as biob
 from build_system import create_process_tea
 
-process_tea = create_process_tea()
+process_tea, labor, labor_cost = create_process_tea()
 process_sys = process_tea.system
 
 # Simulation results
@@ -90,6 +90,7 @@ capex_MM_EUR = (tea.FCI + tea.working_capital) * USD_to_EUR / 1e6
 opex_EUR_per_kg_pomace = tea.AOC * USD_to_EUR / annual_pomace_kg
 msp_EUR_per_kg = tea.solve_price(phenolics) * USD_to_EUR
 
+## Utility cost in AOC % basis
 def utility_cost_fraction(unit, hu_index=0):
     """Return heat utility contribution as % of AOC."""
     return unit.heat_utilities[hu_index].cost * hours / tea.AOC * 100
@@ -98,18 +99,22 @@ cooling_nades_pct = utility_cost_fraction(flash_nades_cooling)
 cooling_antisolvent_pct = utility_cost_fraction(flash_antisolvent_cooling)
 low_pressure_steam_pct = utility_cost_fraction(flash_steam_unit)
 
+# Main reactives cost
 enzyme = enzyme_unit.ins[1]
 fresh_nades = nades_feed_unit.ins[0]
 
-enzyme_cost_fraction = enzyme.F_mass * enzyme.price * hours / tea.AOC * 100
+enzyme_cost_fraction = enzyme.F_mass * hours * enzyme.price / tea.AOC * 100
 fresh_nades_cost_fraction = fresh_nades.F_mass * fresh_nades.price * hours / tea.AOC * 100
 
-protein_sales_EUR = protein_powder.F_mass * hours * protein_powder.price * USD_to_EUR
-protein_sales_pct_AOC = protein_powder.F_mass * hours * protein_powder.price / tea.AOC * 100
+## Protein sales
+protein_sales_EUR = protein_powder.F_mass * hours * protein_powder.price * USD_to_EUR 
+protein_sales_pct_AOC = protein_powder.F_mass  * protein_powder.price * hours / tea.AOC * 100
 
+## Enzyme cost covered by protein
 enzyme_cost_EUR = enzyme.F_mass * enzyme.price * hours * USD_to_EUR
 protein_to_enzyme_revenue_ratio = protein_sales_EUR / enzyme_cost_EUR
 
+## Nades losses
 nades_components = ("Choline_Lactate", "Water")
 
 nades_losses = (
@@ -124,12 +129,15 @@ nades_input = (
 
 nades_loss_fraction = nades_losses / nades_input
 
+## Print results
 print("\n=== Techno-economic results ===")
 print(f"Net present value: {npv_MM_EUR:.3f} MM EUR")
 print(f"CAPEX: {capex_MM_EUR:.3f} MM EUR")
 print(f"OPEX: {opex_EUR_per_kg_pomace:.3f} EUR/kg pomace")
 print(f"MSP: {msp_EUR_per_kg:.3f} EUR/kg phenolics")
 print(f"Plant capacity: {annual_pomace_tonne:.2f} tonne pomace/year")
+print(f"Labor: {labor} workers")
+print(f"Labor cost: {labor_cost*0.86} EUR/year")
 tea_results.TEA_report(
     True,
     "./results/Grape_pomace_valorisation_cashflow.xlsx",
@@ -151,7 +159,10 @@ print("\n=== By-products and losses ===")
 print(f"NADES loss fraction: {nades_loss_fraction:.4f}")
 print(f"Protein powder sales: {protein_sales_pct_AOC:.2f}% AOC")
 print(f"Protein sales: {protein_sales_EUR:.2f} EUR/year")
+print(f"Enzyme cost: {enzyme_cost_EUR:.2f} EUR/year")
 print(f"Protein sales / enzyme cost: {protein_to_enzyme_revenue_ratio:.3f}")
 
 print("\n=== Prices ===")
 print(f"Fresh NADES price: {fresh_nades.price:.4f} USD/kg")
+print(f"Fresh enzyme price: {enzyme.price:.4f} USD/kg")
+print(f"Peptide powder price: {protein_powder.price:.4f} USD/kg")

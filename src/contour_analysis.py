@@ -27,6 +27,6 @@ figs = plot_contourf(
     ylabel = "Antisolvent ratio [kg Antisolvent/kg extract]",
     levels = 10,
     path = "./results/",
-    desired_ind = {"MSP": {" Extract market price ": 65.0}},
+    desired_ind = {"MSP": {"market price": 65.0}},
     use_results_baseline = True,
 )

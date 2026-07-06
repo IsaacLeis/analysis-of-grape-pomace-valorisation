@@ -29,7 +29,7 @@
             "VCF": 5.0,
             "Module_Area": 35.0,
             "Split": {
-                "Protamex": 0.0
+                "Protamex": 1.0
             },
             "Solids_IDs": [
                 "Peptides","Protamex"

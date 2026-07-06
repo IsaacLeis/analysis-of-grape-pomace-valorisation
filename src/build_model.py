@@ -3,7 +3,7 @@ import biobuilders as biob
 import numpy as np
 from build_system import create_process_tea, units_params, prices
 
-techno_economic = create_process_tea()
+techno_economic = create_process_tea()[0]
 
 def build_model():
     """Build and return BioSTEAM model for UNIBO system"""

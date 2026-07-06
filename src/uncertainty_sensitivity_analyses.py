@@ -34,3 +34,29 @@ sensitivity.plot_src(
 
 print("\nSRC completo:")
 print(sensitivity_df)
+
+# Filter SRC values
+# Keep parameters where at least one indicator has |SRC| > 0.1
+# Equivalent to SRC < -0.1 or SRC > 0.1
+
+SRC_THRESHOLD = 0.1
+
+mask = sensitivity_df.abs().gt(SRC_THRESHOLD).any(axis=1)
+sensitivity_abs_gt_01 = sensitivity_df.loc[mask]
+
+# Optional: sort by the maximum absolute SRC across indicators
+sensitivity_abs_gt_01 = sensitivity_abs_gt_01.loc[
+    sensitivity_abs_gt_01.abs().max(axis=1).sort_values(ascending=False).index
+]
+
+# Save filtered SRC table
+sensitivity_abs_gt_01.to_csv(
+    './results/INRAE_SRC_abs_gt_0p1.csv'
+)
+
+# Plot only filtered SRCs
+sensitivity.plot_src(
+    sensitivity_abs_gt_01,
+    path='./results/',
+    filename_tag='INRAE_absSRC_gt_0p1'
+)

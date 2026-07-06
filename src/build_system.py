@@ -455,4 +455,4 @@ def create_process_tea(ID="Grape pomace valorisation"):
         inflation_rate =    tea_params["Inflation"],      
     )
 
-    return techno_economic
+    return techno_economic, labor, labor_cost
