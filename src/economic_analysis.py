@@ -14,7 +14,7 @@ process_sys.diagram(
     kind = 0,
     number = True,
     file = "results/grape_pomace_valorisation_process",
-    format = "svg",
+    format = "png",
 )
 
 ## Mass balance

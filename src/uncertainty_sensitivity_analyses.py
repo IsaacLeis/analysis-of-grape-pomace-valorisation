@@ -20,43 +20,40 @@ sensitivity_df = sensitivity.calculate_src()
 sensitivity.plot_src(sensitivity_df, path = './results/', filename_tag = 'INRAE')
 print(sensitivity_df)
 
-# Rows with at least SRC > +- 0.1
-sensitivity_abs_gt_01 = sensitivity_df[sensitivity_df.abs().gt(0.1).any(axis=1)]
-
-print("\nFilas con al menos un valor absoluto > 0.1:")
-print(sensitivity_abs_gt_01)
-
 sensitivity.plot_src(
     sensitivity_df,
     path='./results/',
     filename_tag='INRAE'
 )
 
-print("\nSRC completo:")
-print(sensitivity_df)
+# Filter SRC values only for MSP
+SRC_THRESHOLD = 0.080
+MSP_COL = "MSP [EUR/kg]"
 
-# Filter SRC values
-# Keep parameters where at least one indicator has |SRC| > 0.1
-# Equivalent to SRC < -0.1 or SRC > 0.1
+# |SRC| > 0.08 for MSP
+mask = sensitivity_df[MSP_COL].abs().gt(SRC_THRESHOLD)
+sensitivity_msp_abs_gt_008 = sensitivity_df.loc[mask, [MSP_COL]]
 
-SRC_THRESHOLD = 0.1
-
-mask = sensitivity_df.abs().gt(SRC_THRESHOLD).any(axis=1)
-sensitivity_abs_gt_01 = sensitivity_df.loc[mask]
-
-# Optional: sort by the maximum absolute SRC across indicators
-sensitivity_abs_gt_01 = sensitivity_abs_gt_01.loc[
-    sensitivity_abs_gt_01.abs().max(axis=1).sort_values(ascending=False).index
-]
-
-# Save filtered SRC table
-sensitivity_abs_gt_01.to_csv(
-    './results/INRAE_SRC_abs_gt_0p1.csv'
+sensitivity_msp_abs_gt_008 = (
+    sensitivity_msp_abs_gt_008
+    .assign(abs_SRC=sensitivity_msp_abs_gt_008[MSP_COL].abs())
+    .sort_values(by="abs_SRC", ascending=False)
+    .drop(columns="abs_SRC")
 )
 
-# Plot only filtered SRCs
+print("|SRC| > 0.08 for MSP:")
+print(sensitivity_msp_abs_gt_008)
+
+sensitivity_msp_abs_gt_008.to_csv(
+    "./results/INRAE_SRC_MSP_abs_gt_0p08.csv"
+)
+
+sensitivity_msp_abs_gt_008_for_plot = sensitivity_df.loc[
+    sensitivity_msp_abs_gt_008.index
+]
+
 sensitivity.plot_src(
-    sensitivity_abs_gt_01,
-    path='./results/',
-    filename_tag='INRAE_absSRC_gt_0p1'
+    sensitivity_msp_abs_gt_008_for_plot,
+    path="./results/",
+    filename_tag="INRAE_MSP_absSRC_gt_0p08",
 )
