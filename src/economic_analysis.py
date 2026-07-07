@@ -137,7 +137,7 @@ print(f"OPEX: {opex_EUR_per_kg_pomace:.3f} EUR/kg pomace")
 print(f"MSP: {msp_EUR_per_kg:.3f} EUR/kg phenolics")
 print(f"Plant capacity: {annual_pomace_tonne:.2f} tonne pomace/year")
 print(f"Labor: {labor} workers")
-print(f"Labor cost: {labor_cost*0.86} EUR/year")
+print(f"Labor cost: {(labor_cost + tea.fringe_benefits * labor_cost)*0.86} EUR/year")
 tea_results.TEA_report(
     True,
     "./results/Grape_pomace_valorisation_cashflow.xlsx",

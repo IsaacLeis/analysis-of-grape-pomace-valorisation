@@ -1,6 +1,7 @@
 import biosteam as bst
 import biobuilders as biob
 from process_chemicals import process_chemicals
+from math import ceil
 
 # Load parameters
 parameters = biob.parse_case_spec("./data/grape_pomace.json")
@@ -95,7 +96,7 @@ def create_process_tea(ID="Grape pomace valorisation"):
         solids = set(units_params["CE202"]["Solids"]),
         moisture_content = units_params["CE202"]["Moisture"],
         moisture_ID = ("Water",),
-        solute_ID = (),
+        solute_ID = ("Peptides", "NaOH", "Protamex"),
         kWh_per_kg = units_params["CE202"]["Specific_Energy"]
     )
     MF301 = biob.MembraneFiltration(
@@ -259,12 +260,10 @@ def create_process_tea(ID="Grape pomace valorisation"):
         adsorbate = units_params['C604']['Adsorbate'],
         adsorbent = units_params['C604']['Adsorbent'],
         t_ads = units_params['C604']['Ads_Time'],
-    #    P_ads = units_params['C403']['P_Ads'],
         T_ads = units_params['C604']['T_Ads'],
         isotherm_args = tuple(units_params['C604']['Isotherm_Args']),
         isotherm_model = units_params['C604']['Isotherm_Model'],
         t_regen = units_params['C604']['Regen_Time'],
-    #    P_regen = units_params['C403']['P_Regen'],
         T_regen = units_params['C604']['T_Regen'],
         regeneration_isotherm_model = units_params['C604']['Regen_Isotherm_Model'],
         regeneration_isotherm_args = units_params['C604']['Regen_Isotherm_Args'],
@@ -423,7 +422,7 @@ def create_process_tea(ID="Grape pomace valorisation"):
     )
     process_settings.load_settings()
 
-    labor = biob.calculate_labor_requirements(
+    labor = ceil(biob.calculate_labor_requirements(
         {
             "Centrifugal separators": 2,
             "Rotatory & belt filter": 2,
@@ -434,7 +433,7 @@ def create_process_tea(ID="Grape pomace valorisation"):
             "Batch reactor": 2,
             "Rotatory dryer": 2,
         }
-    )[0]
+    )[0])
 
     labor_cost = labor * tea_params["Wage"]
 
