@@ -74,9 +74,9 @@
             "P": 101325,
             "kW_m3": 1.75,
             "Solvent_Ratio": 20,
-            "Choline": 0.3978,
-            "Lactate": 0.5132,
-            "Water": 0.0890,
+            "Choline": 0.690,
+            "Lactate": 0.222,
+            "Water": 0.088,
             "Agitation": 900,
             "Vlab": 0.00001
         },
