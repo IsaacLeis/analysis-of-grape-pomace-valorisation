@@ -1,9 +1,12 @@
-import biosteam as bst
+import biosteam as bst; bst.preferences.light_mode()
 import biobuilders as biob
 from build_system import create_process_tea
 
 process_tea, labor, labor_cost = create_process_tea()
 process_sys = process_tea.system
+process_sys.set_tolerance(
+    1e-5, 1e-8,maxiter=500,subsystems=True,
+)
 
 # Simulation results
 process_sys.simulate()
@@ -135,6 +138,7 @@ print(f"Net present value: {npv_MM_EUR:.3f} MM EUR")
 print(f"CAPEX: {capex_MM_EUR:.3f} MM EUR")
 print(f"OPEX: {opex_EUR_per_kg_pomace:.3f} EUR/kg pomace")
 print(f"MSP: {msp_EUR_per_kg:.3f} EUR/kg phenolics")
+print(f"NPV: {tea.NPV*0.86} EUR")
 print(f"Plant capacity: {annual_pomace_tonne:.2f} tonne pomace/year")
 print(f"Labor: {labor} workers")
 print(f"Labor cost: {(labor_cost + tea.fringe_benefits * labor_cost)*0.86} EUR/year")

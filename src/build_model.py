@@ -82,11 +82,11 @@ def build_model():
         natural_gas_d505.price = natural_gas_price
     
     nades = techno_economic.system.units[7].ins[0]
-    nades_price = 1.2016
+    nades_price = 1.8386
     @model.parameter(
         element = None,
         units = "USD/kg",
-        bounds = (0.8324,1.5708),
+        bounds = (1.2022,2.4750),
         baseline = nades_price,
         distribution = 'uniform',
         coupled = True,

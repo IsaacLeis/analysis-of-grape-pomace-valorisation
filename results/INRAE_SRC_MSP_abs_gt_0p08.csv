@@ -1,16 +1,14 @@
 ,MSP [EUR/kg]
-Sle402 solvent ratio [kg solvent/kg solids],0.5345976491091877
-R502 antisolvent ratio [kg antisolvent/kg NaDES],0.4741420259471272
-C605 base cost [$],0.2754852486373862
-Nades price [USD/kg],0.20246718453367057
-Rvf503 base cost [$],0.18697924208598038
-Sle402 extraction yield [kg phenolics extract/kg pomace],-0.1579006931683658
-C605 qmax [mol/kg],-0.1328967875206212
-C605 time [1/Pa],0.12279778135603449
-C605 base n cost [-],0.1215441633356873
-Enzyme price [USD/kg],0.11299449410986093
-R502 precipitation yield [kg phenolics precipitated/kg phenolics extract],-0.10451515621952262
-E302 base n cost [-],-0.1021266955638594
-Tk501 base n cost [-],0.09448776389261748
-D505 moisture [kg liquid/kg dry weight],-0.08206079618469196
-Tk501 base cost [$],0.0800450074893435
+Sle402 solvent ratio [kg solvent/kg solids],0.5109208638046804
+R502 antisolvent ratio [kg antisolvent/kg NaDES],0.40363080366656257
+C605 base cost [$],0.30527246968013455
+Nades price [USD/kg],0.29561371879177617
+C605 base n cost [-],0.21514505355866173
+C605 qmax [mol/kg],-0.20739917760977722
+C605 time [1/Pa],0.19509196184722347
+Rvf503 base cost [$],0.15869622886580848
+Sle402 extraction yield [kg phenolics extract/kg pomace],-0.14615203988158926
+R502 precipitation yield [kg phenolics precipitated/kg phenolics extract],-0.0966799951762699
+Enzyme price [USD/kg],0.09461948290313849
+E302 base n cost [-],-0.0874534694300117
+Tk501 base n cost [-],0.08093527368303224
