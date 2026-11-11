@@ -69,7 +69,7 @@ def create_process_tea(ID="Grape pomace valorisation"):
         outs = ("2",)
     )
     GR101.power_consumption = units_params["GR101"]["Specific_Energy"]
-    R201 = biob.BatchEnzymaticTreatment(
+    R201 = biob.BatchAgitatedReactor(
         ID = 'R-201',
         ins = (GR101-0,enzyme,water,sodium_hydroxide),
         outs = ("6",),
@@ -99,7 +99,7 @@ def create_process_tea(ID="Grape pomace valorisation"):
         solute_ID = ("Peptides", "NaOH", "Protamex"),
         kWh_per_kg = units_params["CE202"]["Specific_Energy"]
     )
-    MF301 = biob.MembraneFiltration(
+    MF301 = biob.MembraneConcentration(
         ID = 'MF-301',
         ins = (CE202-1,),
         outs = ("9","10"),
@@ -107,9 +107,7 @@ def create_process_tea(ID="Grape pomace valorisation"):
         pressure_drop = units_params["MF301"]["Pressure_Drop"],
         TMP = units_params["MF301"]["TMP"],
         VCF = units_params["MF301"]["VCF"],
-        module_area = units_params["MF301"]["Module_Area"],
-        split = units_params["MF301"]["Split"],
-        solids_IDs = units_params["MF301"]["Solids_IDs"]
+        rejection = units_params["MF301"]["Rejection"],
     )
     E302 = biob.MultiEffectEvaporator(
         ID = 'E-302',
@@ -299,9 +297,9 @@ def create_process_tea(ID="Grape pomace valorisation"):
         wash_water.imass["Water"] = (wet_solids.F_mass - wet_solids.imass["Water"]) * wash_ratio
 
     def update_nades(solvent_ratio):
-
-        dry_pomace = CE202.outs[0].imass["Grape_Pomace"]
-        water_from_pomace = CE202.outs[0].imass["Water"]
+        
+        dry_pomace = RVF401.outs[0].imass["Grape_Pomace"]
+        water_from_pomace = RVF401.outs[0].imass["Water"]
 
         target_total = solvent_ratio * dry_pomace
 
@@ -334,36 +332,35 @@ def create_process_tea(ID="Grape pomace valorisation"):
 
     def update_antisolvent(antisolvent_ratio):
 
-        solids = (
-            CE404.outs[1].F_mass
+        extract = CE404.outs[1]
+        fresh_antisolvent = TK501.ins[0]
+
+        # target antisolvent flow [kg/h]
+        target_total = antisolvent_ratio * extract.F_mass
+
+        # Target mass fractions
+        ethanol_fraction = units_params["R502"]["EtOH"]
+        ethyl_acetate_fraction = units_params["R502"]["AcetEt"]
+
+        target_ethanol = target_total * ethanol_fraction
+        target_ethyl_acetate = target_total * ethyl_acetate_fraction
+
+        # Recycled compounds [kg/h]
+        recycled_ethanol = antisolvent_recycled.imass["Ethanol"]
+        recycled_ethyl_acetate = antisolvent_recycled.imass["Ethyl_Acetate"]
+
+        # Fresh requirements [kg/h]
+        ethanol_required = target_ethanol - recycled_ethanol
+        ethyl_acetate_required = target_ethyl_acetate - recycled_ethyl_acetate
+
+        fresh_antisolvent.imass["Ethanol"] = max(
+            ethanol_required, 0.
         )
 
-        target_solvent = (
-            antisolvent_ratio
-            * solids
+        fresh_antisolvent.imass["Ethyl_Acetate"] = max(
+            ethyl_acetate_required, 0.
         )
 
-        recycled_antisolvent = (
-            antisolvent_recycled.imass["Ethanol"]
-            +
-            antisolvent_recycled.imass["Ethyl_Acetate"]
-        )
-
-        fresh_required = max(
-            target_solvent
-            - recycled_antisolvent,
-            0.
-        )
-
-        TK501.ins[0].imass["Ethanol"] = (
-            fresh_required
-            * 0.27
-        )
-
-        TK501.ins[0].imass["Ethyl_Acetate"] = (
-            fresh_required
-            * 0.73
-        )   
     TK501.add_specification(
         f=update_antisolvent,
         args=(units_params["R502"]["Antisolvent_Ratio"],),

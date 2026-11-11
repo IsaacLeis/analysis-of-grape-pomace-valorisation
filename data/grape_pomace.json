@@ -28,7 +28,7 @@
             "TMP": 350000,
             "VCF": 5.0,
             "Module_Area": 35.0,
-            "Split": {
+            "Rejection": {
                 "Protamex": 1.0
             },
             "Solids_IDs": [
@@ -162,24 +162,24 @@
             "P_Ads": 101325,
             "T_Ads": 383.15,
             "Isotherm_Args": [
-                1.512,
+                0.001512,
                 0.162,
-                4.766,
+                0.004766,
                 0.838,
                 8.59
             ],
-            "Isotherm_Model": "Langmuir-Langmuir",
+            "Isotherm_Model": "bilangmuir",
             "Regen_Time": 3.98,
             "P_Regen": 101325,
             "T_Regen": 523.15,
             "Regen_Isotherm_Args": [
-                0.669,
+                0.000669,
                 0.162,
-                0.834,
+                0.000834,
                 0.838,
                 2.153
             ],
-            "Regen_Isotherm_Model": "Langmuir-Langmuir"
+            "Regen_Isotherm_Model": "bilangmuir"
         },
         "VLV605": {
             "P": 101325
@@ -293,10 +293,10 @@
             "lb": 0.0015
         },
         "Natural_Gas": {
-            "value": 0.1489,
-            "ub": 0.4453,
-            "lb": 0.0953
+            "value": 1.141,
+            "lb": 0.6895,
+            "ub": 1.9992
         },
-        "Electricity": 0.0638
+        "Electricity": 0.2669
     }
 }

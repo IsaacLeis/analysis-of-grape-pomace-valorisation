@@ -39,7 +39,7 @@ def build_model():
         enzyme.price = enzyme_price
 
     water_r201 = techno_economic.system.units[1].ins[2]
-    water_rvf401 = techno_economic.system.units[6].ins[0]
+    water_rvf401 = techno_economic.system.units[6].ins[1]
     water_price = prices["Water"]["value"]
     @model.parameter(
         element = None,
@@ -68,11 +68,11 @@ def build_model():
 
     natural_gas_d303 = techno_economic.system.units[5].ins[2]
     natural_gas_d505 = techno_economic.system.units[14].ins[2]
-    natural_gas_price = 1.58
+    natural_gas_price = 1.141
     @model.parameter(
         element = None,
         units = "USD/kg",
-        bounds = (1.75,9.39),
+        bounds = (0.6895,1.9992),
         baseline = natural_gas_price,
         distribution = 'uniform',
         coupled = True,
@@ -82,11 +82,11 @@ def build_model():
         natural_gas_d505.price = natural_gas_price
     
     nades = techno_economic.system.units[7].ins[0]
-    nades_price = 2.4149
+    nades_price = 1.2016
     @model.parameter(
         element = None,
         units = "USD/kg",
-        bounds = (1.5591,3.4310),
+        bounds = (0.8324,1.5708),
         baseline = nades_price,
         distribution = 'uniform',
         coupled = True,
@@ -99,7 +99,7 @@ def build_model():
     @model.parameter(
         element = None,
         units = "USD/kg",
-        bounds = (0.9199,1.6538),
+        bounds = (0.7147,1.4572),
         baseline = antisolvent_price,
         distribution = 'uniform',
         coupled = True,
@@ -200,17 +200,17 @@ def build_model():
         r502.tau = r502_hrt
 
     ## Temperature
-    r201_temperature = r201.operating_T
+    r201_temperature = r201.operating_T - 273.15
     @model.parameter(
         element = r201,
-        units = "h",
+        units = "K",
         bounds = (r201_temperature*0.85,r201_temperature*1.15),
         baseline = r201_temperature,
         distribution = 'uniform',
         coupled = True
     )
     def set_r201_temperature(r201_temperature):
-        r201.operating_T = r201_temperature
+        r201.operating_T = r201_temperature + 273.15
     
     sle402_temperature = sle402.operating_T
     @model.parameter(
@@ -396,7 +396,7 @@ def build_model():
     @model.parameter(
         element = sle402,
         units = 'kW/m3',
-        bounds = (0.015,0.025),
+        bounds = (sle402_volumetric_power*0.50,sle402_volumetric_power*1.50),
         baseline = sle402_volumetric_power,
         distribution = 'uniform',
         coupled = True
@@ -484,11 +484,11 @@ def build_model():
         coupled = True
     )
     def set_r201_naoh_ratio(r201_naoh_ratio):
-        r201.ins[2].imass["NaOH"] = r201_naoh_ratio * units_params["GR101"]["Flow"]
+        r201.ins[3].imass["NaOH"] = r201_naoh_ratio * units_params["GR101"]["Flow"]
     
     ## Langmuir-Langmuir parameters
     c605 = techno_economic.system.units[18]
-    c605_ka = c605.isotherm_args[1]
+    c605_ka = c605.isotherm_args[0]
     @model.parameter(
         element = c605,
         units = '1/Pa',
@@ -498,9 +498,9 @@ def build_model():
         coupled = True
     )
     def set_c605_ka(c605_ka):
-        c605.isotherm_args[1] = c605_ka
+        c605.isotherm_args[0] = c605_ka
 
-    c605_kb = c605.isotherm_args[3]
+    c605_kb = c605.isotherm_args[2]
     @model.parameter(
         element = c605,
         units = '1/Pa',
@@ -510,9 +510,9 @@ def build_model():
         coupled = True
     )
     def set_c605_kb(c605_kb):
-        c605.isotherm_args[3] = c605_kb
+        c605.isotherm_args[2] = c605_kb
     
-    c605_ka_regeneration = c605.regeneration_isotherm_args[1]
+    c605_ka_regeneration = c605.regeneration_isotherm_args[0]
     @model.parameter(
         element = c605,
         units = '1/Pa',
@@ -522,9 +522,9 @@ def build_model():
         coupled = True
     )
     def set_c605_ka_regeneration(c605_ka_regeneration):
-        c605.regeneration_isotherm_args[1] = c605_ka_regeneration
+        c605.regeneration_isotherm_args[0] = c605_ka_regeneration
 
-    c605_kb_regeneration = c605.regeneration_isotherm_args[3]
+    c605_kb_regeneration = c605.regeneration_isotherm_args[2]
     @model.parameter(
         element = c605,
         units = '1/Pa',
@@ -534,12 +534,12 @@ def build_model():
         coupled = True
     )
     def set_c605_kb_regeneration(c605_kb_regeneration):
-        c605.regeneration_isotherm_args[3] = c605_kb_regeneration
+        c605.regeneration_isotherm_args[2] = c605_kb_regeneration
 
     c605_qmax = c605.isotherm_args[-1]
     @model.parameter(
         element = c605,
-        units = '1/Pa',
+        units = 'mol/kg',
         bounds = (c605_qmax*0.50,c605_qmax*1.50),
         baseline = c605_qmax,
         distribution = 'uniform',
@@ -551,7 +551,7 @@ def build_model():
     c605_qmax_regeneration = c605.regeneration_isotherm_args[-1]
     @model.parameter(
         element = c605,
-        units = '1/Pa',
+        units = 'mol/kg',
         bounds = (c605_qmax_regeneration*0.50,c605_qmax_regeneration*1.50),
         baseline = c605_qmax_regeneration,
         distribution = 'uniform',
@@ -657,7 +657,7 @@ def build_model():
     def set_ce202_base_n_cost(ce202_base_n_cost):
         ce202.base_n_cost = ce202_base_n_cost
     
-    mf301_base_cost = mf301.base_cost
+    mf301_base_cost = mf301.base_cost["Membrane housing"]
     @model.parameter(
         element = mf301,
         units = '$',
@@ -667,9 +667,9 @@ def build_model():
         coupled = True
     )
     def set_mf301_base_cost(mf301_base_cost):
-        mf301.base_cost = mf301_base_cost
+        mf301.base_cost["Membrane housing"] = mf301_base_cost
     
-    mf301_base_n_cost = mf301.base_n_cost
+    mf301_base_n_cost = mf301.base_n_cost["Membrane housing"]
     @model.parameter(
         element = mf301,
         units = '-',
@@ -679,7 +679,7 @@ def build_model():
         coupled = True
     )
     def set_mf301_base_n_cost(mf301_base_n_cost):
-        mf301.base_n_cost = mf301_base_n_cost
+        mf301.base_n_cost["Membrane housing"] = mf301_base_n_cost
 
     e302 = techno_economic.system.units[4]
     e302_base_cost = e302.base_cost
@@ -910,7 +910,7 @@ def build_model():
         coupled = True
     )
     def set_c605_base_cost(c605_base_cost):
-        c605.base_cost = c605_base_cost
+        c605.base_cost_vessel = c605_base_cost
     
     c605_base_n_cost = c605.base_n_cost_vessel
     @model.parameter(
@@ -922,7 +922,7 @@ def build_model():
         coupled = True
     )
     def set_c605_base_n_cost(c605_base_n_cost):
-        c605.base_n_cost = c605_base_n_cost
+        c605.base_n_cost_vessel = c605_base_n_cost
 
     tk401_base_cost = tk401.base_cost
     @model.parameter(
