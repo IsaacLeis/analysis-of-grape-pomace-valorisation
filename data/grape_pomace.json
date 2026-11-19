@@ -164,8 +164,8 @@
             "Isotherm_Args": [
                 0.001512,
                 0.162,
-                0.004766,
-                0.838,
+                0.004766, 
+                0.838, 
                 8.59
             ],
             "Isotherm_Model": "bilangmuir",
@@ -173,10 +173,10 @@
             "P_Regen": 101325,
             "T_Regen": 523.15,
             "Regen_Isotherm_Args": [
-                0.000669,
-                0.162,
-                0.000834,
-                0.838,
+                0.000669, 
+                0.162, 
+                0.000834, 
+                0.838, 
                 2.153
             ],
             "Regen_Isotherm_Model": "bilangmuir"

@@ -7,8 +7,8 @@ model = build_model()
 model = run_experiment(model,5000)
 
 uncertainty_plot = biob.UncertaintyPlotter(model.table.copy(), simplified_index={})
-uncertainty_plot.plot_correlation_matrix(path = 'results/',filename = 'INRAE_kendall', indicators = ["OPEX [10^6 USD]","MSP [EUR/kg]","CAPEX [10^6 USD]"])
-uncertainty_plot.plot_distribution_and_stats(["OPEX [10^6 USD]","MSP [EUR/kg]","CAPEX [10^6 USD]"], save_path = 'results/')
+uncertainty_plot.plot_correlation_matrix(path = 'results/',filename = 'INRAE_kendall', indicators = ["OPEX [10^6 EUR]","MSP [EUR/kg]","CAPEX [10^6 EUR]"])
+uncertainty_plot.plot_distribution_and_stats(["OPEX [10^6 EUR]","MSP [EUR/kg]","CAPEX [10^6 EUR]"], save_path = 'results/')
 
 full_problem_space = model.table.copy()
 

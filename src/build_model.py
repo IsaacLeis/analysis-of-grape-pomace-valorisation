@@ -15,13 +15,13 @@ def build_model():
     def MSP():
         return techno_economic.solve_price(product_stream)*0.86
     
-    @model.indicator(units = '10^6 USD')
+    @model.indicator(units = '10^6 EUR')
     def OPEX():
-        return techno_economic.production_costs(product_stream).sum()
+        return techno_economic.AOC / 1e6 * 0.86
     
-    @model.indicator(units = '10^6 USD')
+    @model.indicator(units = '10^6 EUR')
     def CAPEX():
-        return techno_economic.TCI
+        return techno_economic.TCI / 1e6 * 0.86
 
     # Parameters
     ## Prices
@@ -563,7 +563,7 @@ def build_model():
     c605_time = c605.t_ads
     @model.parameter(
         element = c605,
-        units = '1/Pa',
+        units = 'h',
         bounds = (c605_time*0.50,c605_time*1.50),
         baseline = c605_time,
         distribution = 'uniform',
@@ -575,7 +575,7 @@ def build_model():
     c605_time_regeneration = c605.t_regen
     @model.parameter(
         element = c605,
-        units = '1/Pa',
+        units = 'h',
         bounds = (c605_time_regeneration*0.50,c605_time_regeneration*1.50),
         baseline = c605_time_regeneration,
         distribution = 'uniform',
