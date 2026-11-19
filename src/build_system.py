@@ -99,7 +99,7 @@ def create_process_tea(ID="Grape pomace valorisation"):
         solute_ID = ("Peptides", "NaOH", "Protamex"),
         kWh_per_kg = units_params["CE202"]["Specific_Energy"]
     )
-    MF301 = biob.MembraneFiltration(
+    MF301 = biob.MembraneConcentration(
         ID = 'MF-301',
         ins = (CE202-1,),
         outs = ("9","10"),
@@ -422,20 +422,11 @@ def create_process_tea(ID="Grape pomace valorisation"):
     )
     process_settings.load_settings()
 
-    labor = ceil(biob.calculate_labor_requirements(
-        {
-            "Centrifugal separators": 2,
-            "Rotatory & belt filter": 2,
-            "Process vessel": 2,
-            "Continuous reactor": 2,
-            "Heat exchanger": 1,
-            "Evaporator": 2,
-            "Batch reactor": 2,
-            "Rotatory dryer": 2,
-        }
-    )[0])
+    workers_per_shift = 5
+    shifts = 4.8
+    supervision = 0.25
 
-    labor_cost = labor * tea_params["Wage"]
+    labor_cost = workers_per_shift * shifts * tea_params["Wage"] * (1 + supervision)
 
     techno_economic = biob.TEA(
         system = system,
@@ -454,4 +445,4 @@ def create_process_tea(ID="Grape pomace valorisation"):
         inflation_rate =    tea_params["Inflation"],      
     )
 
-    return techno_economic, labor, labor_cost
+    return techno_economic, workers_per_shift * shifts, labor_cost

@@ -2,6 +2,7 @@ import biosteam as bst
 import biobuilders as biob
 from build_model import build_model
 from biobuilders.diagrams.contourplot import plot_contourf
+from warnings import filterwarnings; filterwarnings('ignore')
 
 model = build_model()
 model.system.simulate()
