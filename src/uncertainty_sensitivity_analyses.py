@@ -1,6 +1,7 @@
 import biobuilders as biob
 from build_model import build_model, run_experiment
 from warnings import filterwarnings; filterwarnings('ignore')
+import warnings; warnings.filterwarnings('ignore')
 
 model = build_model()
 model = run_experiment(model,5000)
