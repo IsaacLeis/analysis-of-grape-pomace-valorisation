@@ -44,7 +44,7 @@ print(f"Rel error : {relative_error:.3f} %")
 tea = process_tea
 sys = process_sys
 hours = tea.operating_hours
-USD_to_EUR = 0.86
+USD_to_EUR = 0.91
 
 ## Feedstock
 grape_pomace = sys.units[0].ins[0]
@@ -138,7 +138,7 @@ print(f"Net present value: {npv_MM_EUR:.3f} MM EUR")
 print(f"CAPEX: {capex_MM_EUR:.3f} MM EUR")
 print(f"OPEX: {opex_EUR_per_kg_pomace:.3f} EUR/kg pomace")
 print(f"MSP: {msp_EUR_per_kg:.3f} EUR/kg phenolics")
-print(f"NPV: {tea.NPV*0.86} EUR")
+print(f"NPV: {tea.NPV*USD_to_EUR} EUR")
 print(f"Plant capacity: {annual_pomace_tonne:.2f} tonne pomace/year")
 print(f"Labor: {labor} workers")
 print(f"Labor cost: {(labor_cost + tea.fringe_benefits * labor_cost)*0.86} EUR/year")

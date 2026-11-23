@@ -1,7 +1,6 @@
 import biosteam as bst
 import biobuilders as biob
 from process_chemicals import process_chemicals
-from math import ceil
 
 # Load parameters
 parameters = biob.parse_case_spec("./data/grape_pomace.json")
@@ -81,7 +80,7 @@ def create_process_tea(ID="Grape pomace valorisation"):
             reaction = '1 Grape_Pomace -> 1 Peptides',
             reactant = 'Grape_Pomace',
             basis = 'wt',
-            X = 0.0145
+            X = 0.0131
         ),
         N_reactors = 2,
         kW_per_m3 = 0.33
@@ -155,7 +154,7 @@ def create_process_tea(ID="Grape pomace valorisation"):
         ins = (RVF401-0,TK402-0),
         outs = ('23',),
         extract_reaction = bst.Reaction(
-            'Grape_Pomace -> Phenolics_Extract',
+            'Grape_Pomace -> Tannins_Extract',
             reactant = 'Grape_Pomace',
             X = units_params["R403"]["Yield"],
             basis = 'wt'
@@ -187,10 +186,10 @@ def create_process_tea(ID="Grape pomace valorisation"):
         ins = (CE404-1, TK501-0),
         outs = ('28',),
         reaction = bst.Reaction(
-            reaction = 'Phenolics_Extract -> Phenolics_Precipitate',
-            reactant = 'Phenolics_Extract',
+            reaction = 'Tannins_Extract -> Tannins_Precipitate',
+            reactant = 'Tannins_Extract',
             basis = 'wt',
-            X = units_params["R502"]["PrecipitationPhenolics"],
+            X = units_params["R502"]["Precipitation_Tannins"],
         ),
         tau = units_params["R502"]["HRT"],
         operating_T = units_params["R502"]["T"],
@@ -402,9 +401,9 @@ def create_process_tea(ID="Grape pomace valorisation"):
             system.units[6].ins[1]: prices["Water"]["value"],
             system.units[7].ins[0]: biob.calculate_stream_price(
                 {
-                    0.219 * units_params["R403"]["Choline"]/(units_params["R403"]["Choline"]+units_params["R403"]["Lactate"]): biob.calculate_mean_median_price(prices["Choline_Chloride"]),
-                    0.219 * units_params["R403"]["Lactate"]/(units_params["R403"]["Choline"]+units_params["R403"]["Lactate"]): biob.calculate_mean_median_price(prices["Lactic_Acid"]),
-                    0.781 : prices["Water"]["value"],
+                    0.212 * units_params["R403"]["Choline"]/(units_params["R403"]["Choline"]+units_params["R403"]["Lactate"]): biob.calculate_mean_median_price(prices["Choline_Chloride"]),
+                    0.212 * units_params["R403"]["Lactate"]/(units_params["R403"]["Choline"]+units_params["R403"]["Lactate"]): biob.calculate_mean_median_price(prices["Lactic_Acid"]),
+                    0.788 : prices["Water"]["value"],
                 }
             ),
             system.units[10].ins[0]: biob.calculate_stream_price(
@@ -414,7 +413,7 @@ def create_process_tea(ID="Grape pomace valorisation"):
                 }
             ),
             system.units[14].ins[2]: prices["Natural_Gas"]["value"],
-            system.units[14].outs[0]: prices["Phenolics_Extract"]
+            system.units[14].outs[0]: prices["Tannins_Extract"]
         }
     )
     process_settings.load_settings()

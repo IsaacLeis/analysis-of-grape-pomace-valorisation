@@ -13,15 +13,15 @@ def build_model():
     # Indicators
     @model.indicator(units = 'EUR/kg')
     def MSP():
-        return techno_economic.solve_price(product_stream)*0.86
+        return techno_economic.solve_price(product_stream)*0.91
     
     @model.indicator(units = '10^6 EUR')
     def OPEX():
-        return techno_economic.AOC / 1e6 * 0.86
+        return techno_economic.AOC / 1e6 * 0.91
     
     @model.indicator(units = '10^6 EUR')
     def CAPEX():
-        return techno_economic.TCI / 1e6 * 0.86
+        return techno_economic.TCI / 1e6 * 0.91
 
     # Parameters
     ## Prices
@@ -125,7 +125,7 @@ def build_model():
     sle402_yield = units_params["R403"]["Yield"]
     @model.parameter(
         element = sle402,
-        units = "kg phenolics extract/kg pomace",
+        units = "kg tannins extract/kg pomace",
         bounds = (0.115,0.121),
         baseline = sle402_yield,
         distribution = 'uniform',
@@ -138,7 +138,7 @@ def build_model():
     r502_yield = r502.reaction.X
     @model.parameter(
         element = r502,
-        units = "kg phenolics precipitated/kg phenolics extract",
+        units = "kg tannins precipitated/kg tannins extract",
         bounds = (0.8415, 1.),
         baseline = r502_yield,
         distribution = 'uniform',

@@ -74,9 +74,9 @@
             "P": 101325,
             "kW_m3": 1.75,
             "Solvent_Ratio": 20,
-            "Choline": 0.690,
-            "Lactate": 0.222,
-            "Water": 0.088,
+            "Choline": 0.3978,
+            "Lactate": 0.5132,
+            "Water": 0.0890,
             "Agitation": 900,
             "Vlab": 0.00001
         },
@@ -87,14 +87,14 @@
             },
             "Solids": ["Grape_Pomace", "Protamex", "Peptides"],
             "Moisture_ID": ["Choline_Lactate","Water"],
-            "Solute_ID": ["Phenolics_Extract", "NaOH", "Protamex", "Peptides", "NaOH"],
+            "Solute_ID": ["Tannins_Extract", "NaOH", "Protamex", "Peptides", "NaOH"],
             "Specific_Energy": 0.0055
         },
         "TK501": {
             "Tau": 1
         },
         "R502": {
-            "PrecipitationPhenolics": 0.99,
+            "Precipitation_Tannins": 0.99,
             "HRT": 0.083,
             "T": 273.15,
             "P": 101325,
@@ -104,14 +104,14 @@
         },
         "RVF503": {
             "Split": {
-                "Phenolics_Precipitate": 1.0,
+                "Tannins_Precipitate": 1.0,
                 "Ethanol": 0.0,
                 "Ethyl_Acetate": 0.0
             },
             "Moisture_ID": ["Ethanol","Water","Ethyl_Acetate","Choline_Lactate"],
             "Moisture": 0.285,
-            "Solute_ID": ["Phenolics_Extract", "Protamex", "Peptides", "NaOH"],
-            "Solids": ["Phenolics_Precipitate"],
+            "Solute_ID": ["Tannins_Extract", "Protamex", "Peptides", "NaOH"],
+            "Solids": ["Tannins_Precipitate"],
             "Specific_Energy": 0.0055
         },
         "RVF504": {
@@ -120,8 +120,8 @@
             "Split": {
                 "Choline_Lactate": 0.0,
                 "Water": 0.0,
-                "Phenolics_Extract": 0.0,
-                "Phenolics_Precipitate": 1.0,
+                "Tannins_Extract": 0.0,
+                "Tannins_Precipitate": 1.0,
                 "Ethanol": 0.0,
                 "Ethyl_Acetate": 0.0,
                 "Protamex": 0.0,
@@ -129,8 +129,8 @@
                 "NaOH": 0.0
             },
             "Moisture_ID": ["Ethanol","Ethyl_Acetate"],
-            "Solute_ID": ["Phenolics_Extract", "Protamex", "Peptides", "NaOH"],
-            "Solids": ["Phenolics_Precipitate"],
+            "Solute_ID": ["Tannins_Extract", "Protamex", "Peptides", "NaOH"],
+            "Solids": ["Tannins_Precipitate"],
             "Specific_Energy": 0.0055
         },
         "D505": {
@@ -262,7 +262,7 @@
             2.10,
             2.00
         ],
-        "Phenolics_Extract": 74.89,
+        "Tannins_Extract": 75.58,
         "Quercitin": [
             55.00,
             65.00,

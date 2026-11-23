@@ -21,8 +21,8 @@ deproteinised_pomace = bst.Chemical(
     default = True,
     search_db = False
 )
-phenolics_extract = bst.Chemical(
-    ID = 'Phenolics_Extract',
+tannins_extract = bst.Chemical(
+    ID = 'Tannins_Extract',
     Cp = 2.1,
     rho = 1500,
     phase = 's',
@@ -31,8 +31,8 @@ phenolics_extract = bst.Chemical(
     default = True,
     search_db = False
 )
-phenolics_precipitate = bst.Chemical(
-    ID = 'Phenolics_Precipitate',
+tannins_precipitate = bst.Chemical(
+    ID = 'Tannins_Precipitate',
     Cp = 2.1,
     rho = 1500,
     phase = 's',
@@ -64,7 +64,7 @@ protamex = bst.Chemical(
 
 process_chemicals = [
     pomace, protamex, deproteinised_pomace, nades, 
-    phenolics_extract, phenolics_precipitate, "Water",
+    tannins_extract, tannins_precipitate, "Water",
     "Ethyl_Acetate", "Ethanol", "N2", "O2", "CO2", "CH4",
     "NaOH", "Peptides",
 ]
