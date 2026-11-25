@@ -72,7 +72,7 @@
             "Tau": 1.67,
             "T": 333.15,
             "P": 101325,
-            "kW_m3": 1.75,
+            "kW_m3": 0.5,
             "Solvent_Ratio": 20,
             "Choline": 0.3978,
             "Lactate": 0.5132,
@@ -100,7 +100,8 @@
             "P": 101325,
             "Antisolvent_Ratio": 26.51,
             "EtOH": 0.27,
-            "AcetEt": 0.73
+            "AcetEt": 0.73,
+            "kW_m3": 0.2
         },
         "RVF503": {
             "Split": {
@@ -207,7 +208,8 @@
         "Finance_Frac": 0.40,
         "Finance_Interest": 0.0038,
         "Finance_Years": 6,
-        "Wage": 35000
+        "Wage": 42371.41,
+        "Non_Labour_Cost": 0.273
     },
     "stream_prices": {
         "NaOH": {
@@ -293,10 +295,10 @@
             "lb": 0.0015
         },
         "Natural_Gas": {
-            "value": 1.141,
-            "lb": 0.6895,
-            "ub": 1.9992
+            "value": 0.9285,
+            "lb": 0.5398,
+            "ub": 1.6721
         },
-        "Electricity": 0.2669
+        "Electricity": 0.2048
     }
 }

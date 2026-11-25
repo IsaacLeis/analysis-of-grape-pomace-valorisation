@@ -89,7 +89,7 @@ annual_pomace_tonne = annual_pomace_kg / 1000
 
 ## Main economic results
 npv_MM_EUR = tea.NPV * USD_to_EUR / 1e6
-capex_MM_EUR = (tea.FCI + tea.working_capital) * USD_to_EUR / 1e6
+capex_MM_EUR = (tea.TCI) * USD_to_EUR / 1e6
 opex_EUR_per_kg_pomace = tea.AOC * USD_to_EUR / annual_pomace_kg
 msp_EUR_per_kg = tea.solve_price(phenolics) * USD_to_EUR
 

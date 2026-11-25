@@ -15,7 +15,7 @@ results = contour.evaluate_contour(
     nx = 30,
     ny = 30,
     xbounds=(5.,25.),
-    ybounds=(10.,32.),
+    ybounds=(2.,32.),
     reset_each_run = True,
     order = "row",
 )
@@ -28,6 +28,6 @@ figs = plot_contourf(
     ylabel = "Antisolvent ratio [kg Antisolvent/kg extract]",
     levels = 10,
     path = "./results/",
-    desired_ind = {"MSP": {"market price": 65.0}},
+    desired_ind = {"MSP": {"market": 65.0}},
     use_results_baseline = True,
 )

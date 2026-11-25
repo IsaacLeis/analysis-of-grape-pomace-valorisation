@@ -194,10 +194,7 @@ def create_process_tea(ID="Grape pomace valorisation"):
         tau = units_params["R502"]["HRT"],
         operating_T = units_params["R502"]["T"],
         operating_P = units_params["R502"]["P"],
-        kW_per_m3 = biob.agitator_volumetric_power_determination(
-            method = "Sinnot heuristics",
-            agitation_type = "Medium"
-        )
+        kW_per_m3 = units_params["R502"]["kW_m3"]
     )
     RVF503 = biob.RotaryVacuumFilter(
         ID = 'RVF-503',
@@ -418,7 +415,7 @@ def create_process_tea(ID="Grape pomace valorisation"):
     )
     process_settings.load_settings()
 
-    workers_per_shift = 5
+    workers_per_shift = 4
     shifts = 4.8
     supervision = 0.25
 
@@ -431,6 +428,7 @@ def create_process_tea(ID="Grape pomace valorisation"):
                             tea_params["Duration"]["End"]
         ), 
         labor_cost =        labor_cost,
+        fringe_benefits = tea_params["Non_Labour_Cost"],
         depreciation =      tea_params["Depreciation"],
         supplies =          tea_params["Supplies"],             
         startup_months =    tea_params["Startup_Months"],                       

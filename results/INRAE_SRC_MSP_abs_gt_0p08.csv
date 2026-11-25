@@ -1,13 +1,13 @@
 ,MSP [EUR/kg]
-Sle402 solvent ratio [kg solvent/kg solids],0.5110629789669102
-R502 antisolvent ratio [kg antisolvent/kg NaDES],0.401579247394074
-C605 base cost [$],0.3087747666699827
-Nades price [USD/kg],0.29870274410594033
-C605 base n cost [-],0.2176597637640899
-C605 qmax [mol/kg],-0.2099717224852121
-C605 time [h],0.19719560532117952
-Rvf503 base cost [$],0.160424680910042
-Sle402 extraction yield [kg tannins extract/kg pomace],-0.14200617064236642
-Enzyme price [USD/kg],0.09573019369900547
-R502 precipitation yield [kg tannins precipitated/kg tannins extract],-0.0948494654062588
-E302 base n cost [-],-0.08814401174088787
+Sle402 solvent ratio [kg solvent/kg solids],0.5103628933153749
+R502 antisolvent ratio [kg antisolvent/kg NaDES],0.39970766545194
+C605 base cost [$],0.3095869220651881
+Nades price [USD/kg],0.30125127814451735
+C605 base n cost [-],0.21971007436915382
+C605 qmax [mol/kg],-0.21068858721377612
+C605 time [h],0.19788248808137532
+Rvf503 base cost [$],0.15998548308010305
+Sle402 extraction yield [kg tannins extract/kg pomace],-0.14118291939952737
+Enzyme price [USD/kg],0.09545183930398432
+R502 precipitation yield [kg tannins precipitated/kg tannins extract],-0.09439296605581962
+E302 base n cost [-],-0.08790890158391004
